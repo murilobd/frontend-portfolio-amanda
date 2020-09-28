@@ -1,8 +1,10 @@
 import axios from "axios";
 
+const STRAPI_URL = "https://strapi-portfolio-amanda.herokuapp.com/categories";
+
 async function fetchFromCategory(category) {
 	return axios
-		.get("https://strapi-portfolio-amanda.herokuapp.com/categories", {
+		.get(STRAPI_URL, {
 			params: {
 				slug: category,
 			},

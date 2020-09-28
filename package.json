@@ -1,6 +1,19 @@
 {
 	"name": "amanda-medeiros-freitas-portfolio",
 	"version": "1.0.0",
+	"author": {
+		"name": "Murilo Boareto Delefrate",
+		"email": "murilobd@gmail.com",
+		"url": "https://murilobd.com"
+	},
+	"keywords": [
+		"vue",
+		"vue3",
+		"vuejs",
+		"tailwindcss",
+		"photoswipe",
+		"cms"
+	],
 	"scripts": {
 		"dev": "vite",
 		"build": "cross-env NODE_ENV=production vite build"
