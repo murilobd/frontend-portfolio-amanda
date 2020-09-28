@@ -1,0 +1,20 @@
+{
+	"name": "amanda-medeiros-freitas-portfolio",
+	"version": "1.0.0",
+	"scripts": {
+		"dev": "vite",
+		"build": "cross-env NODE_ENV=production vite build"
+	},
+	"dependencies": {
+		"@tailwindcss/ui": "^0.6.2",
+		"axios": "^0.20.0",
+		"tailwindcss": "^1.8.10",
+		"vue": "^3.0.0-rc.1",
+		"vue-router": "^4.0.0-beta.12"
+	},
+	"devDependencies": {
+		"@vue/compiler-sfc": "^3.0.0-rc.1",
+		"cross-env": "^7.0.2",
+		"vite": "^1.0.0-rc.1"
+	}
+}
