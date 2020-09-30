@@ -5,52 +5,79 @@
       <PageSubtitle> Get in touch with me </PageSubtitle>
     </PageHeader>
   </teleport>
-  <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
-    <div class="sm:col-span-6">
+  <form
+    data-netlify="true"
+    data-netlify-recaptcha="true"
+    name="contact"
+    method="POST"
+    class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8 mt-4"
+  >
+    <input type="hidden" name="form-name" value="contact" />
+    <div class="sm:col-span-2">
       <label
-        for="first_name"
+        for="name"
         class="block text-sm font-medium leading-5 text-gray-700"
       >
-        Name
+        Your name
       </label>
-      <div class="mt-1 rounded-md shadow-sm">
+      <div class="mt-1 relative rounded-md shadow-sm">
         <input
-          id="first_name"
-          class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+          type="text"
+          id="name"
+          name="name"
+          class="form-input py-3 px-4 block w-full transition ease-in-out duration-150"
+          required
         />
       </div>
     </div>
-    <div class="sm:col-span-6">
+    <div class="sm:col-span-2">
       <label
         for="email"
         class="block text-sm font-medium leading-5 text-gray-700"
       >
-        Email address
+        E-mail address
       </label>
-      <div class="mt-1 rounded-md shadow-sm">
+      <div class="mt-1 relative rounded-md shadow-sm">
         <input
-          id="email"
           type="email"
-          class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+          id="email"
+          name="email"
+          class="form-input py-3 px-4 block w-full transition ease-in-out duration-150"
+          required
         />
       </div>
     </div>
-    <div class="sm:col-span-6">
+    <div class="sm:col-span-2">
       <label
-        for="about"
+        for="message"
         class="block text-sm font-medium leading-5 text-gray-700"
       >
         Message
       </label>
-      <div class="mt-1 rounded-md shadow-sm">
+      <div class="mt-1 relative rounded-md shadow-sm">
         <textarea
-          id="about"
-          rows="3"
-          class="form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+          id="message"
+          name="message"
+          rows="4"
+          class="form-textarea py-3 px-4 block w-full transition ease-in-out duration-150"
+          required
         ></textarea>
       </div>
     </div>
-  </div>
+    <div class="sm:col-span-2">
+      <div data-netlify-recaptcha="true"></div>
+    </div>
+    <div class="sm:col-span-2">
+      <span class="w-full inline-flex rounded-md shadow-sm">
+        <button
+          type="submit"
+          class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150"
+        >
+          Send
+        </button>
+      </span>
+    </div>
+  </form>
 </template>
 
 <script>
