@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen bg-white">
     <Navbar />
-    <div class="max-w-6xl mx-auto py-10">
+    <div class="relative max-w-6xl mx-auto py-10">
       <header id="content-header" />
       <main>
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">

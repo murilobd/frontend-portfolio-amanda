@@ -35,7 +35,7 @@ export default defineComponent({
   name: "ChocolatCategory",
 
   setup() {
-    const { category, openPhotoswipeGallery } = useCategory("chocolat");
+    const { category, openPhotoswipeGallery } = useCategory("chocolate");
 
     return { category, openPhotoswipeGallery };
   },
