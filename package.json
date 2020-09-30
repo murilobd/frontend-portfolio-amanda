@@ -16,11 +16,12 @@
 	],
 	"scripts": {
 		"dev": "vite",
-		"build": "cross-env NODE_ENV=production vite build"
+		"build": "vite build"
 	},
 	"dependencies": {
 		"@tailwindcss/ui": "^0.6.2",
 		"axios": "^0.20.0",
+		"showdown": "^1.9.1",
 		"tailwindcss": "^1.8.10",
 		"vue": "^3.0.0-rc.1",
 		"vue-router": "^4.0.0-beta.12"

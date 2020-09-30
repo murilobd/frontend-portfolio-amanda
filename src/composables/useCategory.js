@@ -1,4 +1,4 @@
-import { fetchFromCategory } from "../api/images.js";
+import { fetchFromCategory } from "../api/api.js";
 import { ref, onMounted } from "vue";
 
 export default function useCategories(categorySlug) {

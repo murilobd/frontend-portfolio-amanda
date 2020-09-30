@@ -29,15 +29,13 @@
 <script>
 import { defineComponent } from "vue";
 import GalleryItem from "../components/GalleryItem.vue";
-import useCategoryRepository from "../composables/useCategoryRepository.js";
+import useCategory from "../composables/useCategory.js";
 
 export default defineComponent({
   name: "PatisserieCategory",
 
   setup() {
-    const { category, openPhotoswipeGallery } = useCategoryRepository(
-      "patisserie"
-    );
+    const { category, openPhotoswipeGallery } = useCategory("patisserie");
 
     return { category, openPhotoswipeGallery };
   },
