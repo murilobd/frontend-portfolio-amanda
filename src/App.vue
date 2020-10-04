@@ -7,6 +7,9 @@
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
           <router-view />
         </div>
+        <p class="absolute bottom-0 full-right">
+          {{ env }}
+        </p>
       </main>
     </div>
     <PhotoswipeGallery />
@@ -19,6 +22,13 @@ import PhotoswipeGallery from "./components/PhotoswipeGallery.vue";
 
 export default {
   name: "App",
+
+  computed: {
+    env() {
+      return process.env.NODE_ENV;
+    },
+  },
+
   components: {
     Navbar,
     PhotoswipeGallery,

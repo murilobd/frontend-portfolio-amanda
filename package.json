@@ -11,12 +11,11 @@
 		"vue3",
 		"vuejs",
 		"tailwindcss",
-		"photoswipe",
-		"cms"
+		"photoswipe"
 	],
 	"scripts": {
 		"dev": "vite",
-		"build": "vite build"
+		"build": "vite build && presite ./dist"
 	},
 	"dependencies": {
 		"@tailwindcss/ui": "^0.6.2",
@@ -29,6 +28,7 @@
 	"devDependencies": {
 		"@vue/compiler-sfc": "^3.0.0-rc.1",
 		"cross-env": "^7.0.2",
+		"presite": "^2.0.0",
 		"vite": "^1.0.0-rc.1"
 	}
 }

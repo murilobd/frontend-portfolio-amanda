@@ -81,7 +81,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "Contact",
+
+  mounted() {
+    window.snapshot && window.snapshot(); // tells pre-render page is ready
+  },
+};
 </script>
 
 <style>

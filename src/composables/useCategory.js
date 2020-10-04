@@ -44,6 +44,7 @@ export default function useCategories(categorySlug) {
 	const getCategory = async () => {
 		category.value = await fetchFromCategory(categorySlug);
 		createPhotoswipeGallery();
+		window.snapshot && window.snapshot(); // tells pre-render page is ready
 	};
 
 	onMounted(getCategory);
