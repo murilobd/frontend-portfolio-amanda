@@ -7,6 +7,7 @@
   </teleport>
   <form
     name="contact"
+    data-netlify-recaptcha="true"
     data-netlify="true"
     method="POST"
     class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8 mt-4"
