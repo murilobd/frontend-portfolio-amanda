@@ -6,6 +6,7 @@
     </PageHeader>
   </teleport>
   <form
+    action="/contact/"
     name="contact"
     data-netlify="true"
     method="POST"
