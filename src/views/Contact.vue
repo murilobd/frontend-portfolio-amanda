@@ -6,9 +6,8 @@
     </PageHeader>
   </teleport>
   <form
-    data-netlify="true"
-    data-netlify-recaptcha="true"
     name="contact"
+    data-netlify="true"
     method="POST"
     class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8 mt-4"
   >
@@ -64,9 +63,7 @@
         ></textarea>
       </div>
     </div>
-    <div class="sm:col-span-2">
-      <div data-netlify-recaptcha="true"></div>
-    </div>
+
     <div class="sm:col-span-2">
       <span class="w-full inline-flex rounded-md shadow-sm">
         <button
