@@ -35,6 +35,7 @@
           id="name"
           name="name"
           class="form-input py-3 px-4 block w-full transition ease-in-out duration-150"
+          v-model="form.name"
           required
         />
       </div>
@@ -52,6 +53,7 @@
           id="email"
           name="email"
           class="form-input py-3 px-4 block w-full transition ease-in-out duration-150"
+          v-model="form.email"
           required
         />
       </div>
@@ -69,6 +71,7 @@
           name="message"
           rows="4"
           class="form-textarea py-3 px-4 block w-full transition ease-in-out duration-150"
+          v-model="form.message"
           required
         ></textarea>
       </div>
