@@ -5,12 +5,21 @@
       <PageSubtitle> Get in touch with me </PageSubtitle>
     </PageHeader>
   </teleport>
+
+  <Notification :type="formSubmitedStatus" v-if="formSubmitedStatus">
+    <span v-if="formSubmitedStatus === 'success'">
+      Your message was sent!
+    </span>
+    <span v-if="formSubmitedStatus === 'danger'"> Failed sending message </span>
+  </Notification>
+
   <form
-    action="/contact/"
     name="contact"
     data-netlify="true"
     method="POST"
     class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8 mt-4"
+    @submit.prevent="submitForm"
+    ref="form"
   >
     <input type="hidden" name="form-name" value="contact" />
     <div class="sm:col-span-2">
@@ -79,11 +88,62 @@
 </template>
 
 <script>
+import axios from "axios";
+import Notification from "../components/Notification.vue";
+
 export default {
   name: "Contact",
 
+  data() {
+    return {
+      formSubmitedStatus: null,
+      form: {
+        name: null,
+        email: null,
+        message: null,
+      },
+    };
+  },
+
+  methods: {
+    encode(data) {
+      return Object.keys(data)
+        .map(
+          (key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+        )
+        .join("&");
+    },
+
+    submitForm() {
+      this.formSubmitedStatus = null;
+
+      axios
+        .post(
+          "/",
+          this.encode({
+            "form-name": "contact",
+            ...this.form,
+          }),
+          {
+            header: { "Content-Type": "application/x-www-form-urlencoded" },
+          }
+        )
+        .then(() => {
+          this.formSubmitedStatus = "success";
+          this.$refs.form.reset();
+        })
+        .catch(() => {
+          this.formSubmitedStatus = "danger";
+        });
+    },
+  },
+
   mounted() {
     window.snapshot && window.snapshot(); // tells pre-render page is ready
+  },
+
+  components: {
+    Notification,
   },
 };
 </script>
