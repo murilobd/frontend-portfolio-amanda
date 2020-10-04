@@ -108,6 +108,11 @@ export default {
     };
   },
 
+  mounted() {
+    this.$refs.form.reset();
+    window.snapshot && window.snapshot(); // tells pre-render page is ready
+  },
+
   methods: {
     encode(data) {
       return Object.keys(data)
@@ -139,10 +144,6 @@ export default {
           this.formSubmitedStatus = "danger";
         });
     },
-  },
-
-  mounted() {
-    window.snapshot && window.snapshot(); // tells pre-render page is ready
   },
 
   components: {
