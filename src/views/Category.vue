@@ -27,15 +27,28 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, watch } from "vue";
 import GalleryItem from "../components/GalleryItem.vue";
 import useCategory from "../composables/useCategory.js";
-
+import { useRoute } from "vue-router";
 export default defineComponent({
-  name: "ChocolatCategory",
+  name: "Category",
 
   setup() {
-    const { category, openPhotoswipeGallery } = useCategory("chocolate");
+    const route = useRoute();
+    const { category, openPhotoswipeGallery, refetchCategory } = useCategory(
+      route.name
+    );
+
+    /**
+     * Whenever route changes, refetch category items
+     */
+    watch(
+      () => route.params,
+      () => {
+        refetchCategory(route.name);
+      }
+    );
 
     return { category, openPhotoswipeGallery };
   },

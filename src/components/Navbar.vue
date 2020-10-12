@@ -13,8 +13,15 @@
           </div>
         </div>
         <div class="hidden sm:ml-6 sm:flex sm:items-center space-x-8">
-          <NavbarItem to="/chocolat">Chocolat</NavbarItem>
-          <NavbarItem to="/patisserie">Patisserie</NavbarItem>
+          <NavbarItem
+            :key="`navbar_item_${category.slug}`"
+            :to="{ path: `/${category.slug}` }"
+            v-for="category of categories"
+          >
+            {{ category.title }}
+          </NavbarItem>
+          <!-- <NavbarItem :isMobile="true" to="/chocolat">Chocolat</NavbarItem>
+          <NavbarItem to="/patisserie">Patisserie</NavbarItem> -->
           <NavbarItem to="/contact">Contact</NavbarItem>
         </div>
         <div class="-mr-2 flex items-center sm:hidden">
@@ -63,8 +70,16 @@
 	    -->
     <div :class="`${showMenu ? 'block' : 'hidden'} sm:hidden`" id="mobile-menu">
       <div class="pt-2 pb-3 space-y-1">
-        <NavbarItem :isMobile="true" to="/chocolat">Chocolat</NavbarItem>
-        <NavbarItem :isMobile="true" to="/patisserie">Patisserie</NavbarItem>
+        <NavbarItem
+          :key="`navbar_item_mobile_${category.slug}`"
+          :to="{ path: `/${category.slug}` }"
+          :isMobile="true"
+          v-for="category of categories"
+        >
+          {{ category.title }}
+        </NavbarItem>
+        <!-- <NavbarItem :isMobile="true" to="/chocolat">Chocolat</NavbarItem>
+        <NavbarItem :isMobile="true" to="/patisserie">Patisserie</NavbarItem> -->
         <NavbarItem :isMobile="true" to="/contact">Contact</NavbarItem>
       </div>
     </div>
@@ -75,6 +90,13 @@
 import NavbarItem from "./navbar/NavbarItem.vue";
 
 export default {
+  props: {
+    categories: {
+      type: Array,
+      default: () => [],
+    },
+  },
+
   data() {
     return {
       showMenu: false,

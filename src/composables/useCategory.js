@@ -2,8 +2,9 @@ import { fetchFromCategory } from "../api/api.js";
 import { ref, onMounted } from "vue";
 
 export default function useCategories(categorySlug) {
+	let slug = categorySlug;
 	const category = ref({});
-	const photoswipeItems = [];
+	let photoswipeItems = [];
 
 	/**
 	 * Create photoswipe gallery items
@@ -42,9 +43,20 @@ export default function useCategories(categorySlug) {
 	 * Get category from API
 	 */
 	const getCategory = async () => {
-		category.value = await fetchFromCategory(categorySlug);
+		category.value = await fetchFromCategory(slug);
 		createPhotoswipeGallery();
 		window.snapshot && window.snapshot(); // tells pre-render page is ready
+	};
+
+	/**
+	 * Refetch category
+	 *
+	 * @param {string} categorySlug Category slug
+	 */
+	const refetchCategory = async (categorySlug = null) => {
+		slug = categorySlug || slug;
+		photoswipeItems = [];
+		return await getCategory();
 	};
 
 	onMounted(getCategory);
@@ -52,5 +64,6 @@ export default function useCategories(categorySlug) {
 	return {
 		category,
 		openPhotoswipeGallery,
+		refetchCategory,
 	};
 }

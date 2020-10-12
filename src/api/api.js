@@ -79,4 +79,14 @@ async function fetchFromCategory(category) {
 		});
 }
 
-export { fetchFromCategory, fetchHome };
+async function fetchAllCategories() {
+	return axios.get(`${STRAPI_URL}/categories`).then((res) => {
+		const data = res.data;
+		return data.map((category) => ({
+			title: category.Title,
+			slug: category.slug,
+		}));
+	});
+}
+
+export { fetchFromCategory, fetchHome, fetchAllCategories };

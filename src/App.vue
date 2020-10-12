@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen bg-white">
-    <Navbar />
-    <div class="relative max-w-6xl mx-auto py-10">
+    <Navbar :categories="categories" />
+    <div class="relative max-w-6xl mx-auto py-10" v-if="categories">
       <header id="content-header" />
       <main>
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
@@ -14,15 +14,53 @@
 </template>
 
 <script>
+import { defineComponent, ref, onBeforeMount } from "vue";
+import { useRouter } from "vue-router";
+import { fetchAllCategories } from "./api/api.js";
 import Navbar from "./components/Navbar.vue";
 import PhotoswipeGallery from "./components/PhotoswipeGallery.vue";
+import Category from "./views/Category.vue";
 
-export default {
+export default defineComponent({
   name: "App",
+
+  setup() {
+    const router = useRouter();
+    const categories = ref([]);
+
+    onBeforeMount(async () => {
+      try {
+        categories.value = await fetchAllCategories();
+      } catch {
+        categories.value = [
+          {
+            title: "Chocolate",
+            slug: "chocolate",
+          },
+          {
+            title: "Patisserie",
+            slug: "patisserie",
+          },
+        ];
+      } finally {
+        // dinamically create routes from categories
+        for (const category of categories.value) {
+          router.addRoute({
+            name: category.slug,
+            path: `/${category.slug}`,
+            component: Category,
+            meta: { title: category.title },
+          });
+        }
+      }
+    });
+
+    return { categories };
+  },
 
   components: {
     Navbar,
     PhotoswipeGallery,
   },
-};
+});
 </script>
