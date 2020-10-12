@@ -27,9 +27,9 @@
 	},
 	"devDependencies": {
 		"@vue/compiler-sfc": "^3.0.0-rc.1",
-		"chrome-aws-lambda": "^5.3.1",
 		"cross-env": "^7.0.2",
 		"presite": "^2.0.0",
+		"puppeteer": "^5.3.1",
 		"vite": "^1.0.0-rc.1"
 	}
 }
