@@ -44,7 +44,11 @@ async function fetchHome() {
 	});
 }
 
+const fetchedCategories = {};
 async function fetchFromCategory(category) {
+	if (fetchedCategories[category])
+		return Promise.resolve(fetchedCategories[category]);
+
 	return axios
 		.get(`${STRAPI_URL}/categories`, {
 			params: {
@@ -53,6 +57,7 @@ async function fetchFromCategory(category) {
 		})
 		.then((res) => {
 			const resp = res.data[0];
+			if (!resp) throw new Error("Category not found");
 
 			let images = {
 				id: resp.id,
@@ -75,7 +80,11 @@ async function fetchFromCategory(category) {
 				}, []),
 			};
 
+			fetchedCategories[category] = images;
 			return images;
+		})
+		.catch((err) => {
+			throw err.response;
 		});
 }
 

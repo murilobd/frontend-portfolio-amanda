@@ -20,8 +20,6 @@
           >
             {{ category.title }}
           </NavbarItem>
-          <!-- <NavbarItem :isMobile="true" to="/chocolat">Chocolat</NavbarItem>
-          <NavbarItem to="/patisserie">Patisserie</NavbarItem> -->
           <NavbarItem to="/contact">Contact</NavbarItem>
         </div>
         <div class="-mr-2 flex items-center sm:hidden">
@@ -78,8 +76,6 @@
         >
           {{ category.title }}
         </NavbarItem>
-        <!-- <NavbarItem :isMobile="true" to="/chocolat">Chocolat</NavbarItem>
-        <NavbarItem :isMobile="true" to="/patisserie">Patisserie</NavbarItem> -->
         <NavbarItem :isMobile="true" to="/contact">Contact</NavbarItem>
       </div>
     </div>

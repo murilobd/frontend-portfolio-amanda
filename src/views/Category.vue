@@ -5,6 +5,7 @@
       <PageSubtitle> {{ category.subtitle }} </PageSubtitle>
     </PageHeader>
   </teleport>
+  <!-- Category -->
   <div class="px-4 py-8 sm:px-0">
     <div class="bg-white">
       <div class="space-y-12">
@@ -37,7 +38,7 @@ export default defineComponent({
   setup() {
     const route = useRoute();
     const { category, openPhotoswipeGallery, refetchCategory } = useCategory(
-      route.name
+      route.path.substring(1)
     );
 
     /**
@@ -46,7 +47,7 @@ export default defineComponent({
     watch(
       () => route.params,
       () => {
-        refetchCategory(route.name);
+        if (route.meta.isCategory) refetchCategory(route.path.substring(1));
       }
     );
 

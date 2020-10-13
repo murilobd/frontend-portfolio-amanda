@@ -15,7 +15,6 @@
 
 <script>
 import { defineComponent, ref, onBeforeMount } from "vue";
-import { useRouter } from "vue-router";
 import { fetchAllCategories } from "./api/api.js";
 import Navbar from "./components/Navbar.vue";
 import PhotoswipeGallery from "./components/PhotoswipeGallery.vue";
@@ -25,7 +24,6 @@ export default defineComponent({
   name: "App",
 
   setup() {
-    const router = useRouter();
     const categories = ref([]);
 
     onBeforeMount(async () => {
@@ -42,16 +40,6 @@ export default defineComponent({
             slug: "patisserie",
           },
         ];
-      } finally {
-        // dinamically create routes from categories
-        for (const category of categories.value) {
-          router.addRoute({
-            name: category.slug,
-            path: `/${category.slug}`,
-            component: Category,
-            meta: { title: category.title },
-          });
-        }
       }
     });
 

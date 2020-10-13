@@ -43,9 +43,13 @@ export default function useCategories(categorySlug) {
 	 * Get category from API
 	 */
 	const getCategory = async () => {
-		category.value = await fetchFromCategory(slug);
-		createPhotoswipeGallery();
-		window.snapshot && window.snapshot(); // tells pre-render page is ready
+		try {
+			category.value = await fetchFromCategory(slug);
+			createPhotoswipeGallery();
+			window.snapshot && window.snapshot(); // tells pre-render page is ready
+		} catch (error) {
+			throw error;
+		}
 	};
 
 	/**

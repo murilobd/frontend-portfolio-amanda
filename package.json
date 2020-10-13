@@ -15,7 +15,7 @@
 	],
 	"scripts": {
 		"dev": "vite",
-		"build": "vite build && presite ./dist"
+		"build": "rm -rf .presite && vite build && presite ./dist"
 	},
 	"dependencies": {
 		"@tailwindcss/ui": "^0.6.2",
