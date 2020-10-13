@@ -32,8 +32,8 @@ export default defineComponent({
       } catch {
         categories.value = [
           {
-            title: "Chocolate",
-            slug: "chocolate",
+            title: "Chocolats",
+            slug: "chocolats",
           },
           {
             title: "Patisserie",

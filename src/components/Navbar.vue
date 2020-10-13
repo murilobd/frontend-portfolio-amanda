@@ -6,7 +6,7 @@
           <div class="flex-shrink-0 flex items-center">
             <router-link
               to="/"
-              class="cursor-pointer font-medium text-indigo-600 hover:text-indigo-800 transition duration-150 ease-in-out"
+              class="cursor-pointer font-medium text-grey-500 hover:text-indigo-800 transition duration-150 ease-in-out"
             >
               Amanda Medeiros de Freitas
             </router-link>

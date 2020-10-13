@@ -43,6 +43,9 @@ export default function useCategories(categorySlug) {
 	 * Get category from API
 	 */
 	const getCategory = async () => {
+		console.log(
+			"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ----- MURILOOO"
+		);
 		try {
 			category.value = await fetchFromCategory(slug);
 			createPhotoswipeGallery();
