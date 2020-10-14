@@ -43,13 +43,10 @@ export default function useCategories(categorySlug) {
 	 * Get category from API
 	 */
 	const getCategory = async () => {
-		console.log(
-			"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ----- MURILOOO"
-		);
 		try {
 			category.value = await fetchFromCategory(slug);
 			createPhotoswipeGallery();
-			window.snapshot && window.snapshot(); // tells pre-render page is ready
+			return true;
 		} catch (error) {
 			throw error;
 		}
@@ -63,6 +60,7 @@ export default function useCategories(categorySlug) {
 	const refetchCategory = async (categorySlug = null) => {
 		slug = categorySlug || slug;
 		photoswipeItems = [];
+		category.value = {};
 		return await getCategory();
 	};
 

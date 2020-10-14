@@ -28,10 +28,12 @@
 </template>
 
 <script>
-import { defineComponent, watch } from "vue";
+import { defineComponent, watch, ref } from "vue";
 import GalleryItem from "../components/GalleryItem.vue";
 import useCategory from "../composables/useCategory.js";
 import { useRoute } from "vue-router";
+import prerenderIfAllTrue from "../helpers/prerenderView.js";
+
 export default defineComponent({
   name: "Category",
 
@@ -40,16 +42,37 @@ export default defineComponent({
     const { category, openPhotoswipeGallery, refetchCategory } = useCategory(
       route.path.substring(1)
     );
+    let categoryLoaded = true; // starts as true but it will be toggled when refreshed
 
     /**
      * Whenever route changes, refetch category items
      */
     watch(
       () => route.params,
-      () => {
-        if (route.meta.isCategory) refetchCategory(route.path.substring(1));
+      async () => {
+        categoryLoaded = false;
+        if (route.meta.isCategory) {
+          await refetchCategory(route.path.substring(1));
+          categoryLoaded = true;
+          preRenderView();
+        }
       }
     );
+
+    watch(category, (category, prevCategory) => {
+      const images = category.images;
+      if (Array.isArray(images) && images.length > 0) {
+        preRenderView();
+      }
+    });
+
+    function preRenderView() {
+      prerenderIfAllTrue(
+        category.value.images,
+        categoryLoaded,
+        `Category: ${route.path}`
+      );
+    }
 
     return { category, openPhotoswipeGallery };
   },

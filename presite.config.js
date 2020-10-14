@@ -13,9 +13,9 @@ async function fetchRoutes() {
 }
 
 module.exports = {
-	async routes() {
-		const routes = await fetchRoutes();
-		return ["/", ...routes, "/contact", "/404"];
-	},
+	// async routes() {
+	// 	const routes = await fetchRoutes();
+	// 	return ["/", ...routes, "/contact", "/404"];
+	// },
 	manually: true,
 };

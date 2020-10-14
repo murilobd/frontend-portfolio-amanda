@@ -19,6 +19,7 @@ import { fetchAllCategories } from "./api/api.js";
 import Navbar from "./components/Navbar.vue";
 import PhotoswipeGallery from "./components/PhotoswipeGallery.vue";
 import Category from "./views/Category.vue";
+import eventbus from "./eventbus.js";
 
 export default defineComponent({
   name: "App",
@@ -36,10 +37,12 @@ export default defineComponent({
             slug: "chocolats",
           },
           {
-            title: "Patisserie",
+            title: "Pâtisserie",
             slug: "patisserie",
           },
         ];
+      } finally {
+        eventbus.emit("loadedAllCategories");
       }
     });
 

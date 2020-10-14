@@ -41,8 +41,16 @@
 
 <script>
 import { fetchHome } from "../api/api.js";
-import { defineComponent, ref, onBeforeMount } from "vue";
+import {
+  defineComponent,
+  ref,
+  onBeforeMount,
+  onMounted,
+  onUnmounted,
+} from "vue";
 import showdown from "showdown";
+import eventbus from "../eventbus.js";
+import prerenderIfAllTrue from "../helpers/prerenderView.js";
 
 export default defineComponent({
   name: "Home",
@@ -50,14 +58,38 @@ export default defineComponent({
   setup() {
     const introduction_text = ref("");
     const profile_image = ref("");
+    const categories_loaded = ref(false);
+
+    eventbus.on("loadedAllCategories", allCategoriesLoaded);
+
+    function allCategoriesLoaded() {
+      categories_loaded.value = true;
+      preRenderView();
+    }
 
     onBeforeMount(async () => {
       const resp = await fetchHome();
       profile_image.value = resp.image;
       const markdownToHtml = new showdown.Converter();
       introduction_text.value = markdownToHtml.makeHtml(resp.introduction_text);
-      window.snapshot && window.snapshot(); // tells pre-render page is ready
     });
+
+    onMounted(() => {
+      preRenderView();
+    });
+
+    onUnmounted(() => {
+      eventbus.off("loadedAllCategories", allCategoriesLoaded);
+    });
+
+    function preRenderView() {
+      prerenderIfAllTrue(
+        categories_loaded.value,
+        introduction_text.value,
+        profile_image.value,
+        "Home"
+      );
+    }
 
     return { introduction_text, profile_image };
   },

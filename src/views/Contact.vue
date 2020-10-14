@@ -93,6 +93,7 @@
 <script>
 import axios from "axios";
 import Notification from "../components/Notification.vue";
+import prerenderIfAllTrue from "../helpers/prerenderView.js";
 
 export default {
   name: "Contact",
@@ -110,7 +111,7 @@ export default {
 
   mounted() {
     this.$refs.form.reset();
-    window.snapshot && window.snapshot(); // tells pre-render page is ready
+    prerenderIfAllTrue(true, "contact");
   },
 
   methods: {
