@@ -3444,11 +3444,6 @@ vite@^1.0.0-rc.1:
     vue "^3.0.0-rc.5"
     ws "^7.2.3"
 
-vue-gtag-next@^1.13.0:
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/vue-gtag-next/-/vue-gtag-next-1.13.0.tgz#b2c115465ec6e45eaa6b92ffd6c80140886d3d9b"
-  integrity sha512-6UuFcX2Xx7E8cyFN7z8uMNTSTdVfpQPMREeVhTyr79Zek+RZqr7GLMLH+bzuG1WWRFPDVEQeifG9G32gSThSfg==
-
 vue-router@^4.0.0-beta.12:
   version "4.0.0-beta.13"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-4.0.0-beta.13.tgz#4611d09a9e44f231cc401ecc294a7f2dcb30e6a6"
