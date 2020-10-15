@@ -8,7 +8,13 @@
 </template>
 
 <script>
-export default {};
+import sendPageView from "../helpers/googleAnalytics.js";
+
+export default {
+  mounted() {
+    sendPageView("404");
+  },
+};
 </script>
 
 <style>

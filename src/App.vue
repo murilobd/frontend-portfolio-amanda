@@ -31,6 +31,7 @@ export default defineComponent({
       try {
         categories.value = await fetchAllCategories();
       } catch {
+        // fallback if fetchAllCategories fails. Theoretically, we don't need this, but it's safe enough to have it
         categories.value = [
           {
             title: "Chocolats",

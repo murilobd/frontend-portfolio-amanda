@@ -20,11 +20,10 @@ export const prerenderIfAllTrue = (...args) => {
 	}
 
 	// print last argument as it's route name
-	console.log(
-		"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ----- ",
-		args[args.length - 1]
-	);
-	window.snapshot && window.snapshot(); // tells pre-render page is ready
+	console.log("Route", args[args.length - 1]);
+
+	// tells pre-render page is ready
+	window.snapshot && window.snapshot();
 };
 
 export default prerenderIfAllTrue;

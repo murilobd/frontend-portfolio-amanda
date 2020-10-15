@@ -94,6 +94,7 @@
 import axios from "axios";
 import Notification from "../components/Notification.vue";
 import prerenderIfAllTrue from "../helpers/prerenderView.js";
+import sendPageView from "../helpers/googleAnalytics.js";
 
 export default {
   name: "Contact",
@@ -107,6 +108,10 @@ export default {
         message: null,
       },
     };
+  },
+
+  created() {
+    sendPageView("Contact");
   },
 
   mounted() {

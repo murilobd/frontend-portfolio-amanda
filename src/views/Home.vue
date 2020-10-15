@@ -51,15 +51,18 @@ import {
 import showdown from "showdown";
 import eventbus from "../eventbus.js";
 import prerenderIfAllTrue from "../helpers/prerenderView.js";
+import sendPageView from "../helpers/googleAnalytics.js";
 
 export default defineComponent({
   name: "Home",
 
   setup() {
+    sendPageView("Home");
     const introduction_text = ref("");
     const profile_image = ref("");
     const categories_loaded = ref(false);
 
+    // all categories are loaded in App.vue component. As prerender will always render Home first, it will prerender only after categories are loaded and displayed on the menu
     eventbus.on("loadedAllCategories", allCategoriesLoaded);
 
     function allCategoriesLoaded() {

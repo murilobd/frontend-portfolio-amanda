@@ -33,6 +33,7 @@ import GalleryItem from "../components/GalleryItem.vue";
 import useCategory from "../composables/useCategory.js";
 import { useRoute } from "vue-router";
 import prerenderIfAllTrue from "../helpers/prerenderView.js";
+import sendPageView from "../helpers/googleAnalytics.js";
 
 export default defineComponent({
   name: "Category",
@@ -42,10 +43,11 @@ export default defineComponent({
     const { category, openPhotoswipeGallery, refetchCategory } = useCategory(
       route.path.substring(1)
     );
-    let categoryLoaded = true; // starts as true but it will be toggled when refreshed
+    let categoryLoaded = true; // starts as true but it will be toggled when refreshed. Used to trigger the prerender function
+    sendPageView(route.path.substring(1));
 
     /**
-     * Whenever route changes, refetch category items
+     * Whenever route changes, refetch new category items
      */
     watch(
       () => route.params,
@@ -55,10 +57,15 @@ export default defineComponent({
           await refetchCategory(route.path.substring(1));
           categoryLoaded = true;
           preRenderView();
+          sendPageView(route.path.substring(1));
         }
       }
     );
 
+    /**
+     * Whenever category changes, trigger prerender function.
+     * This will happen usually when change the category, as all categories use the same component
+     */
     watch(category, (category, prevCategory) => {
       const images = category.images;
       if (Array.isArray(images) && images.length > 0) {
