@@ -21,6 +21,7 @@
 		"@tailwindcss/ui": "^0.6.2",
 		"axios": "^0.20.0",
 		"mitt": "^2.1.0",
+		"presite": "./presite-lib",
 		"showdown": "^1.9.1",
 		"tailwindcss": "^1.8.10",
 		"vue": "^3.0.0-rc.1",
@@ -30,7 +31,6 @@
 		"@vue/compiler-sfc": "^3.0.0-rc.1",
 		"cross-env": "^7.0.2",
 		"netlify-plugin-chromium": "^1.1.4",
-		"presite": "^2.0.0",
 		"vite": "^1.0.0-rc.1"
 	}
 }
