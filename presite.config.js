@@ -18,5 +18,6 @@ module.exports = {
 	// 	return ["/", ...routes, "/contact", "/404"];
 	// },
 	manually: true,
-	chromePath: "/Users/murilobd/CerpalLabs/Web/open-source/taki/chrome",
+	chromePath:
+		"/opt/build/repo/node_modules/chromium/lib/chromium/chrome-linux/chrome",
 };
