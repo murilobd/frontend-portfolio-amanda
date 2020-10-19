@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "./views/Home.vue";
+import About from "./views/About.vue";
 import Contact from "./views/Contact.vue";
 import Category from "./views/Category.vue";
 import NotFound from "./views/NotFound.vue";
@@ -11,6 +12,11 @@ export let routes = [
 		path: "/",
 		component: Home,
 		meta: { title: "Amanda Medeiros de Freitas" },
+	},
+	{
+		path: "/a-propos",
+		component: About,
+		meta: { title: "À Propos" },
 	},
 	{
 		path: "/contact",
@@ -51,7 +57,6 @@ if (import.meta.hot) {
 
 router.beforeEach(async (to, from, next) => {
 	if (to.meta.isCategory) {
-		console.log("isCategory", to.path);
 		try {
 			await fetchFromCategory(to.path.substr(1));
 			return next();

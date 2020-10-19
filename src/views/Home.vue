@@ -1,100 +1,90 @@
 <template>
   <teleport to="#content-header">
     <PageHeader>
-      <h1
-        class="font-serif text-4xl font-regular leading-tight text-gray-800 text-center"
-        id="title"
-      >
-        Amanda Medeiros de Freitas
-      </h1>
+      <PageTitle> Portfolio </PageTitle>
     </PageHeader>
   </teleport>
-  <div
-    class="px-4 py-8 sm:px-0"
-    v-if="profile_image !== '' && introduction_text !== ''"
-  >
-    <div class="bg-white">
+  <div class="px-4 py-8 sm:px-0" v-if="categories.length > 0">
+    <div class="">
       <div class="space-y-12">
-        <div
-          class="space-y-4 sm:grid sm:grid-cols-3 sm:items-start sm:gap-6 sm:space-y-0"
+        <ul
+          class="mx-auto space-y-16 sm:grid sm:grid-cols-2 sm:gap-16 sm:space-y-0 lg:grid-cols-2"
         >
-          <!-- Image -->
-          <div class="relative pb-2/3 sm:pt-2/3">
-            <img
-              class="absolute inset-0 object-cover h-full w-full shadow-lg rounded-lg"
-              :src="profile_image.url"
-              :alt="profile_image.title"
-              :title="profile_image.title"
-            />
-          </div>
-
-          <div class="sm:col-span-2">
-            <div class="space-y-4">
-              <div class="prose text-gray-500" v-html="introduction_text" />
-            </div>
-          </div>
-        </div>
+          <li
+            v-for="category in categories"
+            :key="`category_${category.slug}`"
+            class="group rounded shadow-lg overflow-hidden"
+          >
+            <figure class="relative pb-full h-full md:min-h-full min-h-200">
+              <img
+                class="absolute h-full w-full object-cover object-center"
+                :src="category.image.url"
+                :alt="category.title"
+              />
+              <div
+                class="absolute opacity-50 md:opacity-25 group-hover:opacity-50 bg-black top-0 h-full w-full transition-opacity duration-500 ease-in-out"
+              ></div>
+              <div
+                class="absolute top-0 opacity-1 w-full flex-row align-middle items-center text-center justify-items-center"
+              >
+                <div
+                  class="font-serif p-3 text-white md:text-5xl text-4xl mt-10"
+                >
+                  {{ category.title }}
+                </div>
+                <div class="flex justify-center">
+                  <router-link
+                    :to="`/${category.slug}`"
+                    class="w-max-content p-2 rounded font-sans text-base border border-white text-white bg-transparent hover:bg-cool-gray-50 hover:text-gray-900 transition-colors duration-500 ease-in-out cursor-pointer"
+                  >
+                    Voir
+                  </router-link>
+                </div>
+              </div>
+            </figure>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { fetchHome } from "../api/api.js";
-import {
-  defineComponent,
-  ref,
-  onBeforeMount,
-  onMounted,
-  onUnmounted,
-} from "vue";
-import showdown from "showdown";
-import eventbus from "../eventbus.js";
+import { defineComponent, ref, onBeforeMount, onMounted } from "vue";
 import prerenderIfAllTrue from "../helpers/prerenderView.js";
 import sendPageView from "../helpers/googleAnalytics.js";
+import { useLink } from "vue-router";
+import { fetchAllCategories } from "../api/api.js";
 
 export default defineComponent({
   name: "Home",
 
   setup() {
+    const categories = ref([]);
+    const {
+      route,
+      href,
+      isActive,
+      isExactActive,
+      navigate,
+      routerLink,
+    } = useLink();
     sendPageView("Home");
-    const introduction_text = ref("");
-    const profile_image = ref("");
-    const categories_loaded = ref(false);
-
-    // all categories are loaded in App.vue component. As prerender will always render Home first, it will prerender only after categories are loaded and displayed on the menu
-    eventbus.on("loadedAllCategories", allCategoriesLoaded);
-
-    function allCategoriesLoaded() {
-      categories_loaded.value = true;
-      preRenderView();
-    }
 
     onBeforeMount(async () => {
-      const resp = await fetchHome();
-      profile_image.value = resp.image;
-      const markdownToHtml = new showdown.Converter();
-      introduction_text.value = markdownToHtml.makeHtml(resp.introduction_text);
+      const resp = await fetchAllCategories();
+      categories.value = resp;
     });
 
     onMounted(() => {
       preRenderView();
     });
 
-    onUnmounted(() => {
-      eventbus.off("loadedAllCategories", allCategoriesLoaded);
-    });
-
     function preRenderView() {
-      prerenderIfAllTrue(
-        categories_loaded.value,
-        introduction_text.value,
-        profile_image.value,
-        "Home"
-      );
+      prerenderIfAllTrue(categories.value, "Home");
     }
 
-    return { introduction_text, profile_image };
+    return { categories };
   },
 });
 </script>

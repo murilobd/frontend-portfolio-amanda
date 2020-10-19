@@ -1,5 +1,5 @@
 <template>
-  <div class="space-y-5 sm:space-y-4 md:max-w-xl lg:max-w-3xl xl:max-w-none">
+  <div class="space-y-5 sm:space-y-4">
     <p class="text-xl font-light leading-7 text-gray-500" id="subtitle">
       <slot />
     </p>

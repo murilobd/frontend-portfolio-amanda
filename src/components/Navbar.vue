@@ -1,18 +1,19 @@
 <template>
-  <nav class="bg-white border-b border-gray-200">
+  <nav class="pt-5">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between h-16">
         <div class="flex">
           <div class="flex-shrink-0 flex items-center">
             <router-link
               to="/"
-              class="cursor-pointer font-medium text-grey-500 hover:text-indigo-800 transition duration-150 ease-in-out"
+              class="font-serif text-xl cursor-pointer font-medium text-indigo-800 hover:text-indigo-600 transition duration-150 ease-in-out"
             >
               Amanda Medeiros de Freitas
             </router-link>
           </div>
         </div>
         <div class="hidden sm:ml-6 sm:flex sm:items-center space-x-8">
+          <NavbarItem to="/">Accueil</NavbarItem>
           <NavbarItem
             :key="`navbar_item_${category.slug}`"
             :to="{ path: `/${category.slug}` }"
@@ -20,6 +21,7 @@
           >
             {{ category.title }}
           </NavbarItem>
+          <NavbarItem to="/a-propos">À Propos</NavbarItem>
           <NavbarItem to="/contact">Contact</NavbarItem>
         </div>
         <div class="-mr-2 flex items-center sm:hidden">
@@ -68,6 +70,7 @@
 	    -->
     <div :class="`${showMenu ? 'block' : 'hidden'} sm:hidden`" id="mobile-menu">
       <div class="pt-2 pb-3 space-y-1">
+        <NavbarItem :isMobile="true" to="/">Accueil</NavbarItem>
         <NavbarItem
           :key="`navbar_item_mobile_${category.slug}`"
           :to="{ path: `/${category.slug}` }"
@@ -76,6 +79,7 @@
         >
           {{ category.title }}
         </NavbarItem>
+        <NavbarItem :isMobile="true" to="/a-propos">À Propos</NavbarItem>
         <NavbarItem :isMobile="true" to="/contact">Contact</NavbarItem>
       </div>
     </div>

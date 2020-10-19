@@ -61,7 +61,7 @@ async function fetchFromCategory(category) {
 
 			let images = {
 				id: resp.id,
-				title: resp.Title,
+				title: resp.name,
 				subtitle: resp.description,
 			};
 			images = {
@@ -92,8 +92,9 @@ async function fetchAllCategories() {
 	return axios.get(`${STRAPI_URL}/categories`).then((res) => {
 		const data = res.data;
 		return data.map((category) => ({
-			title: category.Title,
+			title: category.name,
 			slug: category.slug,
+			image: getImageFormat(category.category_image, "medium"),
 		}));
 	});
 }

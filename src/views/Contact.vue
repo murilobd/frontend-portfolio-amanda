@@ -2,7 +2,11 @@
   <teleport to="#content-header">
     <PageHeader>
       <PageTitle> Contact </PageTitle>
-      <PageSubtitle> Get in touch with me </PageSubtitle>
+      <PageSubtitle>
+        <a href="mailto:medeiros.f.amanda@gmail.com"
+          >medeiros.f.amanda@gmail.com</a
+        >
+      </PageSubtitle>
     </PageHeader>
   </teleport>
 
@@ -27,7 +31,7 @@
         for="name"
         class="block text-sm font-medium leading-5 text-gray-700"
       >
-        Your name
+        Nom
       </label>
       <div class="mt-1 relative rounded-md shadow-sm">
         <input
@@ -45,7 +49,7 @@
         for="email"
         class="block text-sm font-medium leading-5 text-gray-700"
       >
-        E-mail address
+        E-mail
       </label>
       <div class="mt-1 relative rounded-md shadow-sm">
         <input
@@ -83,7 +87,7 @@
           type="submit"
           class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150"
         >
-          Send
+          Envoyer
         </button>
       </span>
     </div>

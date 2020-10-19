@@ -1,7 +1,10 @@
 <template>
-  <div class="min-h-screen bg-white">
+  <div class="h-screen min-h-screen bg-cool-gray-100">
     <Navbar :categories="categories" />
-    <div class="relative max-w-6xl mx-auto py-10" v-if="categories">
+    <div
+      class="relative max-w-6xl mx-auto py-10 bg-cool-gray-100"
+      v-if="categories"
+    >
       <header id="content-header" />
       <main>
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
@@ -43,7 +46,7 @@ export default defineComponent({
           },
         ];
       } finally {
-        eventbus.emit("loadedAllCategories");
+        eventbus.emit("loadedAllCategories", { categories: categories.value });
       }
     });
 

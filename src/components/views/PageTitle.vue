@@ -1,6 +1,6 @@
 <template>
   <h1
-    class="font-serif text-5xl font-semibold leading-tight text-gray-800"
+    class="font-serif text-5xl font-regular leading-tight text-gray-800 text-center"
     id="title"
   >
     <slot />
