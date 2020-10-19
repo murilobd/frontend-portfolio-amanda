@@ -15,7 +15,7 @@
 	],
 	"scripts": {
 		"dev": "vite",
-		"build": "rm -rf .presite && vite build && presite ./dist"
+		"build": "rm -rf .presite && vite build && presite ./dist && node remove-folders-presite.js"
 	},
 	"dependencies": {
 		"@tailwindcss/ui": "^0.6.2",
@@ -30,7 +30,8 @@
 		"@vue/compiler-sfc": "^3.0.0-rc.1",
 		"cross-env": "^7.0.2",
 		"netlify-plugin-chromium": "^1.1.4",
-		"presite": "^2.0.0",
+		"presite": "^2.0.1",
+		"shelljs": "^0.8.4",
 		"vite": "^1.0.0-rc.1"
 	}
 }
