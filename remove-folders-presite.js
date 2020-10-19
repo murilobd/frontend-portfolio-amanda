@@ -11,7 +11,7 @@ axios
 
 function getCategories(resp) {
 	const categories = resp.data.map((category) => category.slug);
-	return [...categories, "contact"];
+	return [...categories, "contact", "a-propos"];
 }
 
 function moveCategoryFilesToRoot(categories) {

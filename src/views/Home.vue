@@ -74,6 +74,7 @@ export default defineComponent({
     onBeforeMount(async () => {
       const resp = await fetchAllCategories();
       categories.value = resp;
+      preRenderView();
     });
 
     onMounted(() => {

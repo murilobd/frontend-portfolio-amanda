@@ -64,6 +64,7 @@ export default defineComponent({
       profile_image.value = resp.image;
       const markdownToHtml = new showdown.Converter();
       introduction_text.value = markdownToHtml.makeHtml(resp.introduction_text);
+      preRenderView();
     });
 
     onMounted(() => {
