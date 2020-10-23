@@ -13,6 +13,7 @@
       </main>
     </div>
     <PhotoswipeGallery />
+    <LoadingSpinner />
   </div>
 </template>
 
@@ -21,7 +22,7 @@ import { defineComponent, ref, onBeforeMount } from "vue";
 import { fetchAllCategories } from "./api/api.js";
 import Navbar from "./components/Navbar.vue";
 import PhotoswipeGallery from "./components/PhotoswipeGallery.vue";
-import Category from "./views/Category.vue";
+import LoadingSpinner from "./components/LoadingSpinner.vue";
 import eventbus from "./eventbus.js";
 
 export default defineComponent({
@@ -56,6 +57,7 @@ export default defineComponent({
   components: {
     Navbar,
     PhotoswipeGallery,
+    LoadingSpinner,
   },
 });
 </script>
